@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Vita | Ultimate Presentation</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <style>
+        :root {
+            /* Dark Mode (Default) Variables */
+            --bg-color: #010308;
+            --primary: #00ffcc;
+            --primary-glow: rgba(0, 255, 204, 0.4);
+            --secondary: #2563eb;
+            --secondary-glow: rgba(37, 99, 235, 0.4);
+            --accent: #f43f5e;
+            --accent-glow: rgba(244, 63, 94, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: rgba(0, 0, 0, 0.4);
+            --bg-grad-1: rgba(0, 255, 204, 0.05);
+            --bg-grad-2: rgba(59, 130, 246, 0.05);
+        }
+
+        /* Light / Clinical Mode Variables */
+        body.light-mode {
+            --bg-color: #f0f4f8;
+            --primary: #059669;
+            /* Darker green */
+            --primary-glow: rgba(5, 150, 105, 0.2);
+            --secondary: #2563eb;
+            --secondary-glow: rgba(37, 99, 235, 0.2);
+            --accent: #e11d48;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --glass-shadow: rgba(0, 0, 0, 0.05);
+            --bg-grad-1: rgba(5, 150, 105, 0.05);
+            --bg-grad-2: rgba(37, 99, 235, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            background-image:
+                radial-gradient(circle at 15% 50%, var(--bg-grad-1), transparent 30%),
+                radial-gradient(circle at 85% 30%, var(--bg-grad-2), transparent 30%);
+        }
+
+        h1,
+        h2,
+        h3,
+        .space-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Floating Logo */
+        .fixed-logo {
+            position: fixed;
+            top: 25px;
+            left: 30px;
+            z-index: 1000;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .vita-logo-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 24px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 100px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 255, 204, 0.1);
+            transition: 0.3s;
+        }
+
+        .vita-logo-text img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            mix-blend-mode: screen;
+            animation: pulseLogo 2s infinite alternate;
+        }
+
+        @keyframes pulseLogo {
+            0% {
+                filter: drop-shadow(0 0 2px var(--primary-glow));
+                transform: scale(1);
+            }
+
+            100% {
+                filter: drop-shadow(0 0 8px var(--primary));
+                transform: scale(1.05);
+            }
+        }
+
+        .fixed-logo:hover .vita-logo-text {
+            transform: scale(1.05) translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px var(--primary-glow);
+            color: var(--primary);
+        }
+
+        body.light-mode .vita-logo-text {
+            background: rgba(255, 255, 255, 0.9);
+            color: #0f172a;
+            border-color: var(--primary);
+        }
+
+        /* Floating Actions */
+        .action-btn {
+            position: fixed;
+            z-index: 1000;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 12px;
+            border-radius: 50%;
+            color: var(--text-main);
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px var(--glass-shadow);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        #theme-toggle {
+            top: 20px;
+            right: 20px;
+        }
+
+        #fullscreen-toggle {
+            top: 20px;
+            right: 70px;
+        }
+
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .ecg-container {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100vw;
+            height: 200px;
+            transform: translateY(-50%);
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        body.light-mode .ecg-container {
+            opacity: 0.05;
+        }
+
+        .ecg-path {
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 2;
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+            animation: drawECG 4s linear infinite;
+            filter: drop-shadow(0 0 8px var(--primary));
+        }
+
+        @keyframes drawECG {
+            0% {
+                stroke-dashoffset: 2000;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            position: relative;
+        }
+
+        .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            box-shadow: 0 30px 60px var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+        }
+
+        body.light-mode .glass-panel {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .js-tilt-glare {
+            border-radius: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            z-index: 2;
+            position: relative;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-primary {
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        body.light-mode .text-primary {
+            text-shadow: none;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        /* Slide 1: Hero */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(0, 255, 204, 0.05);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 100px;
+            font-family: 'Space Grotesk';
+            color: var(--primary);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+        }
+
+        body.light-mode .hero-badge {
+            border-color: var(--primary);
+            background: rgba(5, 150, 105, 0.1);
+            box-shadow: none;
+        }
+
+        .hero-badge i {
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.3);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.3);
+            }
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            line-height: 1.1;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .device-showcase {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+        }
+
+        .device-image {
+            width: 90%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 100px var(--primary-glow);
+            transform: translateZ(50px);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        body.light-mode .device-image {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .floating-stat {
+            position: absolute;
+            background: var(--bg-color);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-family: 'Space Grotesk';
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateZ(80px);
+            box-shadow: 0 10px 30px var(--glass-shadow);
+        }
+
+        .stat-1 {
+            top: 10%;
+            right: 0;
+            color: var(--primary);
+            animation: float1 4s ease-in-out infinite;
+        }
+
+        .stat-2 {
+            bottom: 20%;
+            left: -5%;
+            color: var(--accent);
+            animation: float2 5s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+
+            0%,
+            100% {
+                transform: translateZ(80px) translateY(0);
+            }
+
+            50% {
+                transform: translateZ(80px) translateY(-15px);
+            }
+        }
+
+        @keyframes float2 {
+
+            0%,
+            100% {
+                transform: translateZ(80px) translateY(0);
+            }
+
+            50% {
+                transform: translateZ(80px) translateY(15px);
+            }
+        }
+
+        /* Slide 2: Split Cards */
+        .split-card {
+            padding: 3rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .split-card:hover {
+            transform: translateY(-10px) translateZ(20px);
+        }
+
+        .card-red:hover {
+            box-shadow: 0 20px 60px var(--accent-glow);
+            border-color: rgba(244, 63, 94, 0.3);
+        }
+
+        .card-cyan:hover {
+            box-shadow: 0 20px 60px var(--primary-glow);
+            border-color: rgba(0, 255, 204, 0.3);
+        }
+
+        .card-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            transform: translateZ(30px);
+        }
+
+        .card-red .card-icon-wrapper {
+            background: rgba(244, 63, 94, 0.1);
+            color: var(--accent);
+        }
+
+        .card-cyan .card-icon-wrapper {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary);
+        }
+
+        ul.cyber-list {
+            list-style: none;
+            display: grid;
+            gap: 1.5rem;
+            transform: translateZ(20px);
+        }
+
+        ul.cyber-list li {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        ul.cyber-list li i {
+            margin-top: 4px;
+            font-size: 1.2rem;
+        }
+
+        .card-red ul.cyber-list li i {
+            color: var(--accent);
+        }
+
+        .card-cyan ul.cyber-list li i {
+            color: var(--primary);
+        }
+
+        /* Slide 3: Process */
+        .process-track {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            padding-top: 4rem;
+        }
+
+        .process-line {
+            position: absolute;
+            top: 4rem;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: var(--glass-border);
+            z-index: 0;
+        }
+
+        .process-line-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        body.light-mode .process-line-fill {
+            box-shadow: none;
+            background: var(--primary);
+        }
+
+        .swiper-slide-active .process-line-fill {
+            animation: dataFlow 3s infinite linear;
+        }
+
+        @keyframes dataFlow {
+            0% {
+                width: 0%;
+                left: 0;
+            }
+
+            50% {
+                width: 100%;
+                left: 0;
+            }
+
+            100% {
+                width: 0%;
+                left: 100%;
+            }
+        }
+
+        .process-node {
+            width: 22%;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .node-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-color);
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            margin: 0 auto -40px auto;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--text-main);
+            transition: 0.5s;
+            box-shadow: 0 0 30px var(--glass-shadow);
+        }
+
+        .process-node:hover .node-icon {
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 30px var(--primary-glow);
+            transform: translateY(-60%) scale(1.1);
+        }
+
+        .node-content {
+            padding: 3rem 1.5rem 1.5rem 1.5rem;
+        }
+
+        .node-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk';
+        }
+
+        .node-content p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Slide 4: Architecture Matrix */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .m-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .m-block {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .m-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: skewX(-20deg);
+            transition: 0.5s;
+        }
+
+        .m-block:hover::before {
+            left: 150%;
+        }
+
+        .m-block.sensor {
+            border-left: 4px solid var(--primary);
+        }
+
+        .m-block.core {
+            border: 1px solid var(--secondary);
+            background: rgba(37, 99, 235, 0.05);
+            box-shadow: 0 0 40px var(--secondary-glow);
+            padding: 3rem 2rem;
+        }
+
+        .m-block.output {
+            border-right: 4px solid var(--accent);
+        }
+
+        .m-arrow {
+            color: var(--glass-border);
+            font-size: 2rem;
+            animation: pulseArrow 2s infinite;
+        }
+
+        @keyframes pulseArrow {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: translateX(0);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(10px);
+                color: var(--primary);
+            }
+        }
+
+        /* Slide 5: Live UI Simulator */
+        .simulator-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #050914;
+            border: 1px solid #1e293b;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            font-family: 'Space Grotesk', sans-serif;
+            transition: all 0.5s;
+        }
+
+        body.light-mode .simulator-wrapper {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .sim-header {
+            padding: 1rem 1.5rem;
+            background: #0f172a;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #f8fafc;
+        }
+
+        body.light-mode .sim-header {
+            background: #e2e8f0;
+            color: #0f172a;
+            border-color: #cbd5e1;
+        }
+
+        .sim-body {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .sim-graph-container {
+            position: relative;
+            height: 180px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            display: flex;
+            align-items: center;
+        }
+
+        body.light-mode .sim-graph-container {
+            background: #fff;
+        }
+
+        .sim-grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.2;
+            background-image: linear-gradient(#00ffcc 1px, transparent 1px), linear-gradient(90deg, #00ffcc 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        body.light-mode .sim-grid-bg {
+            opacity: 0.05;
+            background-image: linear-gradient(#059669 1px, transparent 1px), linear-gradient(90deg, #059669 1px, transparent 1px);
+        }
+
+        .sim-line path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: trace 2.5s linear infinite;
+        }
+
+        @keyframes trace {
+            0% {
+                stroke-dashoffset: 1000;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .sim-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sim-stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        body.light-mode .sim-stat-box {
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .sim-controls {
+            padding: 1.5rem;
+            border-top: 1px solid #1e293b;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        body.light-mode .sim-controls {
+            border-color: #cbd5e1;
+        }
+
+        .btn-trigger {
+            background: #f43f5e;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            font-family: 'Space Grotesk';
+        }
+
+        .btn-trigger:hover {
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.6);
+        }
+
+        .btn-reset {
+            background: #334155;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            font-family: 'Space Grotesk';
+        }
+
+        .btn-reset:hover {
+            background: #475569;
+        }
+
+        /* Sim Alarm State */
+        .simulator-wrapper.alarm-active {
+            animation: emergencyPulse 1s infinite;
+            border-color: #f43f5e;
+        }
+
+        @keyframes emergencyPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 transparent;
+            }
+
+            50% {
+                box-shadow: 0 0 50px rgba(244, 63, 94, 0.4);
+            }
+        }
+
+        /* Slide 6: Future & QR */
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .f-card {
+            padding: 2rem;
+            border-radius: 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            transition: 0.4s;
+            text-align: center;
+        }
+
+        .f-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .f-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .qr-section {
+            margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .qr-code {
+            background: #fff;
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--glass-shadow);
+            transition: 0.3s;
+        }
+
+        .qr-code:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 40px var(--primary-glow);
+        }
+
+        .swiper-pagination-bullet {
+            background: var(--text-muted);
+            width: 12px;
+            height: 12px;
+            transition: 0.4s;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--primary);
+            width: 40px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .swiper-slide .anim {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .swiper-slide-active .anim {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s !important;
+        }
+
+        .delay-2 {
+            transition-delay: 0.2s !important;
+        }
+
+        .delay-3 {
+            transition-delay: 0.3s !important;
+        }
+
+        .delay-4 {
+            transition-delay: 0.4s !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Official Brand Logo -->
+    <a href="#" class="fixed-logo" title="Team VITA">
+        <div class="vita-logo-text">
+            <img src="vita_logo_v5.png" alt="Icon">
+            VITA
+        </div>
+    </a>
+
+    <!-- Floating Tools -->
+    <button id="theme-toggle" class="action-btn" title="Toggle Clinical Light Mode" onclick="toggleTheme()">
+        <i class="ph-fill ph-sun"></i>
+    </button>
+    <button id="fullscreen-toggle" class="action-btn" title="Toggle Fullscreen" onclick="toggleFullScreen()">
+        <i class="ph-fill ph-corners-out"></i>
+    </button>
+
+    <div id="particles-js"></div>
+
+    <div class="ecg-container">
+        <svg viewBox="0 0 1000 200" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+            <path class="ecg-path"
+                d="M0,100 L150,100 L170,70 L190,130 L210,100 L400,100 L420,50 L450,160 L480,100 L700,100 L720,80 L740,120 L760,100 L1000,100" />
+        </svg>
+    </div>
+
+    <div class="swiper main-swiper">
+        <div class="swiper-wrapper">
+
+            <!-- SLIDE 1: Hero -->
+            <div class="swiper-slide">
+                <div class="container grid-2">
+                    <div>
+                        <div class="hero-badge anim"><i class="ph-fill ph-heartbeat"></i> VITA MEDICAL PROTOCOL</div>
+                        <h1 class="hero-title anim delay-1">Smart <br><span class="text-gradient">Vital
+                                Signs</span><br>Monitor</h1>
+                        <p class="hero-subtitle anim delay-2">Next-generation continuous monitoring powered by Raspberry
+                            Pi. Delivering intelligent medical actions and predictive analytics in real-time.</p>
+                    </div>
+                    <div class="device-showcase anim delay-3" data-tilt data-tilt-max="10" data-tilt-speed="400"
+                        data-tilt-glare data-tilt-max-glare="0.2">
+                        <img src="VITA.jpeg" alt="Vita Device" class="device-image"
+                            onerror="this.src='https://placehold.co/800x1000/111/00ffcc?text=Device+Image'">
+                        <div class="floating-stat stat-1"><i class="ph ph-activity"></i> SpO2: 98%</div>
+                        <div class="floating-stat stat-2"><i class="ph ph-warning"></i> NIBP: 120/80</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: Problem vs Objective -->
+            <div class="swiper-slide">
+                <div class="container">
+                    <h2 class="section-title anim">The <span class="text-gradient">Shift</span> in Healthcare</h2>
+                    <div class="grid-2">
+                        <div class="glass-panel split-card card-red anim delay-1" data-tilt data-tilt-max="5">
+                            <div class="card-icon-wrapper"><i class="ph ph-warning-octagon"></i></div>
+                            <h3 class="space-font" style="font-size: 2rem; margin-bottom: 1.5rem;">Current Reality</h3>
+                            <ul class="cyber-list">
+                                <li><i class="ph ph-x"></i> Intermittent monitoring misses critical events.</li>
+                                <li><i class="ph ph-x"></i> Manual observation introduces human error.</li>
+                                <li><i class="ph ph-x"></i> Dumb alarms without contextual medical guidance.</li>
+                                <li><i class="ph ph-x"></i> Data is lost, hindering trend tracking.</li>
+                            </ul>
+                        </div>
+                        <div class="glass-panel split-card card-cyan anim delay-2" data-tilt data-tilt-max="5">
+                            <div class="card-icon-wrapper"><i class="ph ph-target"></i></div>
+                            <h3 class="space-font" style="font-size: 2rem; margin-bottom: 1.5rem;">The Vita Objective
+                            </h3>
+                            <ul class="cyber-list">
+                                <li><i class="ph ph-check"></i> Continuous, real-time multi-parameter tracking.</li>
+                                <li><i class="ph ph-check"></i> Intelligent, automated signal interpretation.</li>
+                                <li><i class="ph ph-check"></i> Meaningful alarms with recommended clinical actions.
+                                </li>
+                                <li><i class="ph ph-check"></i> Local database integration for historic trends.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: Workflow -->
+            <div class="swiper-slide">
+                <div class="container">
+                    <h2 class="section-title anim">Workflow <span class="text-gradient">Protocol</span></h2>
+                    <div class="process-track anim delay-1">
+                        <div class="process-line">
+                            <div class="process-line-fill"></div>
+                        </div>
+                        <div class="process-node">
+                            <div class="node-icon"><i class="ph ph-waveform"></i></div>
+                            <div class="glass-panel node-content">
+                                <h4>1. Acquisition</h4>
+                                <p>Sensors constantly map ECG, SpO2, and Temp data from the patient.</p>
+                            </div>
+                        </div>
+                        <div class="process-node">
+                            <div class="node-icon" style="transition-delay: 0.1s"><i class="ph ph-cpu"></i></div>
+                            <div class="glass-panel node-content">
+                                <h4>2. Processing</h4>
+                                <p>Signal amplification and precise Analog-to-Digital conversion.</p>
+                            </div>
+                        </div>
+                        <div class="process-node">
+                            <div class="node-icon" style="transition-delay: 0.2s"><i class="ph ph-brain"></i></div>
+                            <div class="glass-panel node-content">
+                                <h4>3. Analysis</h4>
+                                <p>Raspberry Pi applies logic matrices and stores historical data locally.</p>
+                            </div>
+                        </div>
+                        <div class="process-node">
+                            <div class="node-icon" style="transition-delay: 0.3s"><i class="ph ph-bell-ringing"></i>
+                            </div>
+                            <div class="glass-panel node-content">
+                                <h4>4. Action</h4>
+                                <p>UI displays intelligent alarms paired with exact medical directives.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 4: Architecture -->
+            <div class="swiper-slide">
+                <div class="container">
+                    <h2 class="section-title anim">System <span class="text-gradient">Architecture</span></h2>
+                    <div class="matrix-grid anim delay-1">
+                        <div class="m-col">
+                            <div class="m-block sensor">
+                                <i class="ph ph-activity text-primary" style="font-size: 2rem;"></i>
+                                <h4 class="space-font" style="margin: 0.5rem 0;">ECG</h4><small
+                                    class="text-muted">AD8232</small>
+                            </div>
+                            <div class="m-block sensor">
+                                <i class="ph ph-drop text-primary" style="font-size: 2rem;"></i>
+                                <h4 class="space-font" style="margin: 0.5rem 0;">SpO2</h4><small
+                                    class="text-muted">MAX30102</small>
+                            </div>
+                            <div class="m-block sensor">
+                                <i class="ph ph-thermometer text-primary" style="font-size: 2rem;"></i>
+                                <h4 class="space-font" style="margin: 0.5rem 0;">Temp</h4><small
+                                    class="text-muted">DS18B20</small>
+                            </div>
+                        </div>
+                        <div class="m-col"><i class="ph-fill ph-arrow-right m-arrow"></i></div>
+                        <div class="m-col">
+                            <div class="m-block">
+                                <h4 class="space-font">ADC Interface</h4><small class="text-muted">Arduino</small>
+                            </div>
+                            <div class="m-block core" data-tilt data-tilt-scale="1.05">
+                                <i class="ph-fill ph-raspberry-pi"
+                                    style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                                <h3 class="space-font" style="font-size: 1.5rem;">Raspberry Pi 4</h3>
+                                <p style="font-size: 0.8rem; margin-top: 0.5rem;" class="text-muted">Core Processing &
+                                    DB</p>
+                            </div>
+                        </div>
+                        <div class="m-col"><i class="ph-fill ph-arrow-right m-arrow"></i></div>
+                        <div class="m-col">
+                            <div class="m-block output"><i class="ph ph-desktop text-accent"
+                                    style="font-size: 2rem;"></i>
+                                <h4 class="space-font" style="margin: 0.5rem 0;">Touch UI</h4>
+                            </div>
+                            <div class="m-block output"><i class="ph ph-database text-accent"
+                                    style="font-size: 2rem;"></i>
+                                <h4 class="space-font" style="margin: 0.5rem 0;">Local DB</h4>
+                            </div>
+                            <div class="m-block output"><i class="ph ph-siren text-accent" style="font-size: 2rem;"></i>
+                                <h4 class="space-font" style="margin: 0.5rem 0;">Alarms</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 5: LIVE SIMULATOR -->
+            <div class="swiper-slide">
+                <div class="container">
+                    <h2 class="section-title anim">Live <span class="text-gradient">Simulation</span></h2>
+
+                    <div class="simulator-wrapper anim delay-1">
+                        <!-- Header -->
+                        <div class="sim-header">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="ph-fill ph-monitor-heart"></i> VITA OS v1.0
+                                <button onclick="toggleAudio()" id="audio-btn"
+                                    style="background:transparent; border:1px solid #3b82f6; color:#3b82f6; border-radius:6px; padding:3px 10px; cursor:pointer; font-family:'Space Grotesk'; font-size:0.8rem; display:flex; align-items:center; gap:5px; transition:0.3s;">
+                                    <i class="ph ph-speaker-slash"></i> Sound OFF
+                                </button>
+                            </div>
+                            <div id="sim-status" style="color: #00ffcc; font-weight: bold; font-size: 0.9rem;"><i
+                                    class="ph-fill ph-check-circle"></i> SYSTEM NORMAL</div>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="sim-body">
+                            <!-- Graph -->
+                            <div class="sim-graph-container">
+                                <div class="sim-grid-bg"></div>
+                                <svg class="sim-line" viewBox="0 0 500 100" preserveAspectRatio="none"
+                                    style="width: 100%; height: 80%; z-index: 1;">
+                                    <path id="ecg-wave"
+                                        d="M0,50 L50,50 L60,20 L70,80 L80,50 L150,50 L160,20 L170,80 L180,50 L250,50 L260,20 L270,80 L280,50 L350,50 L360,20 L370,80 L380,50 L450,50 L460,20 L470,80 L480,50 L500,50"
+                                        fill="none" stroke="#00ffcc" stroke-width="3"
+                                        style="filter: drop-shadow(0 0 5px #00ffcc); transition: all 0.3s;" />
+                                </svg>
+                            </div>
+                            <!-- Stats -->
+                            <div class="sim-stats">
+                                <div class="sim-stat-box" id="box-hr">
+                                    <div
+                                        style="font-size: 0.8rem; color: #94a3b8; font-family: 'Inter'; font-weight: 600; letter-spacing: 1px;">
+                                        HEART RATE</div>
+                                    <div id="sim-hr-val" style="font-size: 3.5rem; color: #00ffcc; margin: 0.5rem 0;">72
+                                    </div>
+                                    <div style="font-size: 0.8rem; color: #94a3b8;">BPM</div>
+                                </div>
+                                <div class="sim-stat-box">
+                                    <div
+                                        style="font-size: 0.8rem; color: #94a3b8; font-family: 'Inter'; font-weight: 600; letter-spacing: 1px;">
+                                        SpO2</div>
+                                    <div style="font-size: 3.5rem; color: #3b82f6; margin: 0.5rem 0;">98<span
+                                            style="font-size: 2rem;">%</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="sim-controls">
+                            <button class="btn-trigger" onclick="triggerSimAlarm()"><i
+                                    class="ph-bold ph-warning-octagon"></i> Trigger Tachycardia Event</button>
+                            <button class="btn-reset" onclick="resetSim()"><i class="ph-bold ph-arrows-clockwise"></i>
+                                Reset System</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SLIDE 6: Future & QR -->
+            <div class="swiper-slide">
+                <div class="container">
+                    <h2 class="section-title anim">Future <span class="text-gradient">Horizons</span></h2>
+                    <div class="future-grid anim delay-1">
+                        <div class="f-card" data-tilt>
+                            <i class="ph ph-brain f-icon"></i>
+                            <h3 class="space-font" style="margin-bottom: 1rem;">AI Analytics</h3>
+                            <p class="text-muted" style="font-size: 0.9rem;">Machine learning models for predictive
+                                analytics, forecasting patient deterioration.</p>
+                        </div>
+                        <div class="f-card" data-tilt>
+                            <i class="ph ph-cloud-arrow-up f-icon text-secondary"></i>
+                            <h3 class="space-font" style="margin-bottom: 1rem;">Cloud & Mobile</h3>
+                            <p class="text-muted" style="font-size: 0.9rem;">Remote access through secure cloud
+                                infrastructure and dedicated mobile apps.</p>
+                        </div>
+                        <div class="f-card" data-tilt>
+                            <i class="ph ph-plugs-connected f-icon text-accent"></i>
+                            <h3 class="space-font" style="margin-bottom: 1rem;">EHR Integration</h3>
+                            <p class="text-muted" style="font-size: 0.9rem;">Direct API integration with hospital
+                                Electronic Health Records.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 7: Thank You & Scan -->
+            <div class="swiper-slide">
+                <div class="container" style="text-align: center;">
+                    <h2 class="section-title anim" style="margin-bottom: 2rem;">Thank <span
+                            class="text-gradient">You</span></h2>
+                    <p class="anim delay-1"
+                        style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Ready to view the full project documentation and team details? Scan the code below with your
+                        mobile camera.
+                    </p>
+
+                    <div class="anim delay-2"
+                        style="display: inline-block; padding: 20px; background: white; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,255,204,0.15);"
+                        data-tilt data-tilt-scale="1.05">
+                        <!-- Live Vercel Mobile Hub QR Code -->
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://vita-full-data.vercel.app/"
+                            alt="Project QR" style="display: block; width: 250px; height: 250px; border-radius: 10px;">
+                    </div>
+
+                    <div class="anim delay-3" style="margin-top: 3rem;">
+                        <div class="hero-badge"
+                            style="background: rgba(37, 99, 235, 0.1); border-color: var(--secondary); color: var(--secondary); box-shadow: 0 0 20px var(--secondary-glow);">
+                            <i class="ph-fill ph-device-mobile"></i> Live Mobile Hub
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Swiper Init
+        try {
+            var swiper = new Swiper(".main-swiper", {
+                grabCursor: true,
+                effect: "coverflow",
+                coverflowEffect: { rotate: 30, stretch: 0, depth: 200, modifier: 1, slideShadows: true },
+                speed: 800, keyboard: { enabled: true }, mousewheel: true,
+                pagination: { el: ".swiper-pagination", clickable: true }
+            });
+        } catch (e) { console.error("Swiper init failed:", e); }
+
+        // Tilt Init
+        try { VanillaTilt.init(document.querySelectorAll("[data-tilt]")); } catch (e) { }
+
+        // Particles Init
+        try {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": ["#00ffcc", "#3b82f6"] },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.4 },
+                    "size": { "value": 3, "random": true },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.1, "width": 1 },
+                    "move": { "enable": true, "speed": 1 }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
+                    "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } }
+                },
+                "retina_detect": true
+            });
+        } catch (e) { }
+
+        // --- Theme Toggle ---
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const icon = document.querySelector('#theme-toggle i');
+            if (document.body.classList.contains('light-mode')) {
+                icon.classList.remove('ph-sun');
+                icon.classList.add('ph-moon');
+            } else {
+                icon.classList.remove('ph-moon');
+                icon.classList.add('ph-sun');
+            }
+        }
+
+        // --- Fullscreen Toggle ---
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+                document.querySelector('#fullscreen-toggle i').classList.replace('ph-corners-out', 'ph-corners-in');
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    document.querySelector('#fullscreen-toggle i').classList.replace('ph-corners-in', 'ph-corners-out');
+                }
+            }
+        }
+
+        // --- Web Audio API (Synthetic ECG Beep) ---
+        let audioCtx;
+        let beepInterval;
+        let isAudioOn = false;
+        let currentBPM = 72;
+
+        function playBeep(freq = 800) {
+            if (!isAudioOn) return;
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            if (freq > 1000) {
+                // Emergency Alarm: Harsh dual-tone (Triangle + Square)
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                const osc2 = audioCtx.createOscillator();
+                osc2.type = 'square';
+                osc2.frequency.setValueAtTime(freq + 200, audioCtx.currentTime);
+                osc2.connect(gain);
+                osc2.start();
+                osc2.stop(audioCtx.currentTime + 0.2);
+
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime); // Louder
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2); // Longer decay
+            } else {
+                // Normal Heartbeat: Soft pure Sine wave
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+                gain.gain.setValueAtTime(0.1, audioCtx.currentTime); // Softer
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1); // Short decay
+            }
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + (freq > 1000 ? 0.2 : 0.1));
+        }
+
+        function startBeepLoop() {
+            clearInterval(beepInterval);
+            let intervalMs = (60 / currentBPM) * 1000;
+            beepInterval = setInterval(() => {
+                // Pitch goes up and becomes more alarming if BPM is critical
+                playBeep(currentBPM > 100 ? 1200 : 800);
+            }, intervalMs);
+        }
+
+        function toggleAudio() {
+            isAudioOn = !isAudioOn;
+            const btn = document.getElementById('audio-btn');
+            if (isAudioOn) {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                audioCtx.resume();
+                btn.innerHTML = '<i class="ph-fill ph-speaker-high"></i> Sound ON';
+                btn.style.background = 'rgba(59,130,246,0.2)';
+                playBeep(800); // Play one immediately
+                startBeepLoop();
+            } else {
+                btn.innerHTML = '<i class="ph ph-speaker-slash"></i> Sound OFF';
+                btn.style.background = 'transparent';
+                clearInterval(beepInterval);
+            }
+        }
+
+        // --- Live Simulator Logic ---
+        let simInterval;
+        function triggerSimAlarm() {
+            const wrapper = document.querySelector('.simulator-wrapper');
+            const status = document.getElementById('sim-status');
+            const ecgWave = document.getElementById('ecg-wave');
+            const hrVal = document.getElementById('sim-hr-val');
+
+            // Visuals
+            wrapper.classList.add('alarm-active');
+            status.innerHTML = '<i class="ph-bold ph-warning-octagon"></i> CRITICAL: TACHYCARDIA DETECTED';
+            status.style.color = '#f43f5e';
+            ecgWave.style.stroke = '#f43f5e';
+            ecgWave.style.filter = 'drop-shadow(0 0 10px #f43f5e)';
+            ecgWave.parentElement.style.animationDuration = '1s'; // Fast heartbeat
+            hrVal.style.color = '#f43f5e';
+
+            // Ensure audio is ON for maximum shock value
+            if (!isAudioOn) toggleAudio();
+            currentBPM = 160;
+            startBeepLoop(); // Update interval immediately to fast beeping
+
+            // Number climbing
+            clearInterval(simInterval);
+            let currentHr = parseInt(hrVal.innerText);
+            simInterval = setInterval(() => {
+                if (currentHr < 165) {
+                    currentHr += Math.floor(Math.random() * 8) + 3;
+                    hrVal.innerText = currentHr;
+                } else {
+                    hrVal.innerText = 160 + Math.floor(Math.random() * 8);
+                }
+            }, 100);
+        }
+
+        function resetSim() {
+            clearInterval(simInterval);
+            const wrapper = document.querySelector('.simulator-wrapper');
+            const status = document.getElementById('sim-status');
+            const ecgWave = document.getElementById('ecg-wave');
+            const hrVal = document.getElementById('sim-hr-val');
+
+            // Revert Visuals
+            wrapper.classList.remove('alarm-active');
+            status.innerHTML = '<i class="ph-fill ph-check-circle"></i> SYSTEM NORMAL';
+            status.style.color = '#00ffcc';
+
+            ecgWave.style.stroke = '#00ffcc';
+            ecgWave.style.filter = 'drop-shadow(0 0 5px #00ffcc)';
+            ecgWave.parentElement.style.animationDuration = '2.5s'; // Normal heartbeat
+            hrVal.style.color = '#00ffcc';
+            hrVal.innerText = '72';
+
+            // Revert Audio
+            currentBPM = 72;
+            if (isAudioOn) startBeepLoop();
+        }
+    </script>
+</body>
+
+</html>
